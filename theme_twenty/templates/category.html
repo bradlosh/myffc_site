@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Main -->
+<article id="main">
+
+  <header class="container">
+  {% if category=='sermons' %}
+    <h2>Hear a Message</h2>
+    {% else %}
+    <h2>{{ category }}</h2>
+	{% endif %}
+    <!-- add page sub title here -->
+ <!--   <p>Category Template</p>  -->
+  </header>
+
+    <!-- One -->
+    <section class="wrapper style4 container">
+
+        <div class="row">
+		{% for article in articles %}
+
+								<div class="12u">
+
+									<section>
+						<!--				<span class="icon featured fa-{{ article.icon }}"></span>  -->
+										<header>
+											<a href="{{ SITEURL }}/{{ article.url }}" rel='bookmark'><h3>{{ article.title }}</h3></a>
+										</header>
+										<p>{{ article.author }} - {{ article.postdate }}</p>
+										<p>{{ article.content[:196]|striptags }}</p>
+									</section>
+
+								</div>
+		{% endfor %}
+
+        </div>
+    </section>
+
+    <!-- Two -->	
+{% include "cta.html" %}
+
+</article>
+
+{% endblock content %}
