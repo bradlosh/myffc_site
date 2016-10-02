@@ -25,7 +25,7 @@ Status: published
 	</div>
 	<div class="6u 12u(narrower)">
 		<p>Sunday, Sept 23, 2016<br/>
-		6:30pm</p>
+		10:25am</p>
 	</div>
 </div>
 <div class="row">
