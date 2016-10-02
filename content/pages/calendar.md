@@ -21,10 +21,19 @@ Status: published
 
 <div class="row">
 	<div class="6u 12u(narrower)">
+		<h2> Baptism Service</h2>
+	</div>
+	<div class="6u 12u(narrower)">
+		<p>Sunday, Sept 23, 2016<br/>
+		6:30pm</p>
+	</div>
+</div>
+<div class="row">
+	<div class="6u 12u(narrower)">
 		<h2> Bunco - Ladies!</h2>
 	</div>
 	<div class="6u 12u(narrower)">
-		<p>Thurs, Sept 29, 2016<br/>
+		<p>Thurs, October 27, 2016<br/>
 		6:30pm</p>
 	</div>
 </div>

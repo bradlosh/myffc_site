@@ -13,7 +13,7 @@ TIMEZONE = 'America/New_York'
 
 DEFAULT_LANG = 'en'
 
-THEME = '/home/brad/projects/pelican/myffc.org/theme_twenty'
+THEME = '/home/brad/projects/pelican/myffc_site/theme_twenty'
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
