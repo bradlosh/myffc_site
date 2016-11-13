@@ -21,29 +21,10 @@ Status: published
 
 <div class="row">
 	<div class="6u 12u(narrower)">
-		<h2> Baptism Service</h2>
-	</div>
-	<div class="6u 12u(narrower)">
-		<p>Sunday, October 23, 2016<br/>
-		10:25am</p>
-	</div>
-</div>
-<div class="row">
-	<div class="6u 12u(narrower)">
 		<h2> Bunco - Ladies!</h2>
 	</div>
 	<div class="6u 12u(narrower)">
-		<p>Thurs, October 27, 2016<br/>
+		<p>Thurs, November 17, 2016<br/>
 		6:30pm</p>
-	</div>
-</div>
-<div class="row">
-	<div class="6u 12u(narrower)">
-		<h2> Hallelujah Party</h2>
-	</div>
-	<div class="6u 12u(narrower)">
-		<p>Wed, November 2, 2016<br/>
-		7:00pm<br/>
-		pre-school through 5th grade</p>
 	</div>
 </div>
