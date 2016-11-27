@@ -37,3 +37,13 @@ Status: published
 		6:30pm</p>
 	</div>
 </div>
+<div class="row">
+	<div class="6u 12u(narrower)">
+		<h2>Candlelight Service</h2>
+	</div>
+	<div class="6u 12u(narrower)">
+		<p>Sun, December 25, 2016<br/>
+		5:00pm<br/>
+		no morning service</p>
+	</div>
+</div>
