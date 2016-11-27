@@ -21,10 +21,19 @@ Status: published
 
 <div class="row">
 	<div class="6u 12u(narrower)">
+		<h2> Hanging of the Greens!</h2>
+	</div>
+	<div class="6u 12u(narrower)">
+		<p>Wed, November 30, 2016<br/>
+		7:00pm</p>
+	</div>
+</div>
+<div class="row">
+	<div class="6u 12u(narrower)">
 		<h2> Bunco - Ladies!</h2>
 	</div>
 	<div class="6u 12u(narrower)">
-		<p>Thurs, November 17, 2016<br/>
+		<p>Thurs, December 8, 2016<br/>
 		6:30pm</p>
 	</div>
 </div>
