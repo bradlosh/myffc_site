@@ -21,15 +21,6 @@ Status: published
 
 <div class="row">
 	<div class="6u 12u(narrower)">
-		<h2> Hanging of the Greens!</h2>
-	</div>
-	<div class="6u 12u(narrower)">
-		<p>Wed, November 30, 2016<br/>
-		7:00pm</p>
-	</div>
-</div>
-<div class="row">
-	<div class="6u 12u(narrower)">
 		<h2> Bunco - Ladies!</h2>
 	</div>
 	<div class="6u 12u(narrower)">
@@ -42,8 +33,8 @@ Status: published
 		<h2>Candlelight Service</h2>
 	</div>
 	<div class="6u 12u(narrower)">
-		<p>Sun, December 25, 2016<br/>
+		<p>Sat, December 24, 2016<br/>
 		5:00pm<br/>
-		no morning service</p>
+		no services on Christmas</p>
 	</div>
 </div>
