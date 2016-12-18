@@ -18,14 +18,14 @@ Status: published
 		info@myffc.org</p>	
 	</div>
 </div>
-
 <div class="row">
 	<div class="6u 12u(narrower)">
-		<h2> Bunco - Ladies!</h2>
+		<h2>Youth Christmas Party</h2>
 	</div>
 	<div class="6u 12u(narrower)">
-		<p>Thurs, December 8, 2016<br/>
-		6:30pm</p>
+		<p>Wed, December 21, 2016<br/>
+		6:00pm<br/>
+		no services at Faith Family Church</p>
 	</div>
 </div>
 <div class="row">
@@ -36,5 +36,14 @@ Status: published
 		<p>Sat, December 24, 2016<br/>
 		5:00pm<br/>
 		no services on Christmas</p>
+	</div>
+</div>
+<div class="row">
+	<div class="6u 12u(narrower)">
+		<h2> Bunco - Ladies!</h2>
+	</div>
+	<div class="6u 12u(narrower)">
+		<p>Thurs, January 26, 2017<br/>
+		6:30pm</p>
 	</div>
 </div>
