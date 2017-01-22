@@ -28,3 +28,12 @@ Status: published
 		6:30pm</p>
 	</div>
 </div>
+<div class="row">
+	<div class="6u 12u(narrower)">
+		<h2> Chili Cook-Off!</h2>
+	</div>
+	<div class="6u 12u(narrower)">
+		<p>Sunday, Feb 5, 2017<br/>
+		after service</p>
+	</div>
+</div>
