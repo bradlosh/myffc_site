@@ -1,0 +1,43 @@
+{{> header }}
+
+  <section class="mw7 center bg-light-gray pa3 ph3-ns">
+  <h1 class="mt0">{{ title }}</h1>
+  <p class="lh-copy measure">
+          {{ author }}
+  </p>
+  <p class="lh-copy measure">
+          {{#if postDate}}{{ postDate }}{{/if}}
+  </p>
+  <p class="1h-copy measure">
+<iframe src="https://archive.org/embed/{{ audioLink }}" width="375" height="30" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>  </p>
+  <ul class="list ph3 ph4-ns">
+        <li class="dib mr1 mb2">topics:<li>
+        {{#each tags as |tag| }}
+        <li class="dib mr1 mb2">
+          <a class="f6 f5-ns b db pa2 link dim dark-gray ba b--black-20" href="{{baseUrl}}/topics/{{tag.slug}}/" title="topics for {{tag.name}}">{{tag.name}}</a>
+        </li>
+        {{/each}}
+  </ul>
+  <ul class="list ph3 ph4-ns">
+        <li class="dib mr1 mb2">download:<li>
+        <li class="dib mr1 mb2">
+          <a class="f6 f5-ns b db pa2 link dim dark-gray ba b--black-20" href="https://archive.org/download/{{ mp3 }}" title="download mp3" download="{{ mp3 }}">
+            <svg id="musicNote" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="currentcolor">
+  <path d="M0 24 A6 6 0 0 0 12 24 V8 H26 V18 A6 6 0 0 0 18 24 A6 6 0 0 0 30 24 V2 H8 V18 A6 6 0 0 0 0 24"></path>
+</svg>
+            mp3
+          </a>
+        </li>
+        <li class="dib mr1 mb2">
+          <a class="f6 f5-ns b db pa2 link dim dark-gray ba b--black-20" href="https://archive.org/download/{{ ogg }}" title="download ogg" download="{{ ogg }}">
+            <svg id="musicNote" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="currentcolor">
+  <path d="M0 24 A6 6 0 0 0 12 24 V8 H26 V18 A6 6 0 0 0 18 24 A6 6 0 0 0 30 24 V2 H8 V18 A6 6 0 0 0 0 24"></path>
+</svg>
+            ogg
+          </a>
+        </li>
+  </ul>
+
+</section>
+
+{{> footer }}

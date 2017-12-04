@@ -17,61 +17,63 @@ for collection in json_object['response']['docs']:
 	cdatetime = collection['date']
 	cdate = cdatetime.split('T')[0]
 	tags = collection['subject']
-	tags = [tag.upper() for tag in tags]
+	tags = [tag.lower() for tag in tags]
 	for t in tags:
 		print t
-	if 'FAITH FAMILY CHURCH' in tags:
-		tags.remove('FAITH FAMILY CHURCH')
-	if 'TAYLORS,SC' in tags:
-		tags.remove('TAYLORS,SC')
-	if 'TAYLORS, SC' in tags:
-		tags.remove('TAYLORS, SC')
-	if 'TAYLORS' in tags:
-		tags.remove('TAYLORS')
-	if 'TAYLORS SC' in tags:
-		tags.remove('TAYLORS SC')
-	if 'JESUS' in tags:
-		tags.remove('JESUS')
-	if 'PASTOR FRANK JONES' in tags:
-		tags.remove('PASTOR FRANK JONES')
-	if 'RHEMA' in tags:
-		tags.remove('RHEMA')
-	if 'RHEAM' in tags:
-		tags.remove('RHEAM')
-	if 'FAITH FAMILY CHURCH, TAYLORS, SC' in tags:
-		tags.remove('FAITH FAMILY CHURCH, TAYLORS, SC')
-	if 'FAITH FAMILY CHURCH, TAYLORS' in tags:
-		tags.remove('FAITH FAMILY CHURCH, TAYLORS')
-	if 'FAITH FAMILY CHURCH. TAYLORS' in tags:
-		tags.remove('FAITH FAMILY CHURCH. TAYLORS')
-	if 'BRAD LOSH' in tags:
-		tags.remove('BRAD LOSH')
-	if 'GREENVILLE' in tags:
-		tags.remove('GREENVILLE')
-	if 'HAGIN' in tags:
-		tags.remove('HAGIN')
-	if 'JENNIFER LOSH' in tags:
-		tags.remove('JENNIFER LOSH')
-	if 'PASTOR BRAD LOSH' in tags:
-		tags.remove('PASTOR BRAD LOSH')
-	if 'PASTOR FRANK JONES' in tags:
-		tags.remove('PASTOR FRANK JONES')
-	if 'PASTOR FRANK JONE' in tags:
-		tags.remove('PASTOR FRANK JONE')
-	if 'PASTOR JENNIFER LOSH' in tags:
-		tags.remove('PASTOR JENNIFER LOSH')
-	if 'PASTOR JUDI JONES' in tags:
-		tags.remove('PASTOR JUDI JONES')
-	if 'PASTOR ROGER BREWER' in tags:
-		tags.remove('PASTOR ROGER BREWER')
-	if 'REV BILLY BARBEE' in tags:
-		tags.remove('REV BILLY BARBEE')
-	if 'REV RANDALL GRIER' in tags:
-		tags.remove('REV RANDALL GRIER')
-	if 'REV RANDY GRIER' in tags:
-		tags.remove('REV RANDY GRIER')
-	if 'SC' in tags:
-		tags.remove('SC')
+	if 'faith family church' in tags:
+		tags.remove('faith family church')
+	if 'taylors,sc' in tags:
+		tags.remove('taylors,sc')
+	if 'taylors, sc' in tags:
+		tags.remove('taylors, sc')
+	if 'taylors' in tags:
+		tags.remove('taylors')
+	if 'taylors sc' in tags:
+		tags.remove('taylors sc')
+	if 'jesus' in tags:
+		tags.remove('jesus')
+	if 'pastor frank jones' in tags:
+		tags.remove('pastor frank jones')
+	if 'rhema' in tags:
+		tags.remove('rhema')
+	if 'rheam' in tags:
+		tags.remove('rheam')
+	if 'faith' in tags:
+		tags.remove('faith')
+	if 'faith family church, taylors, sc' in tags:
+		tags.remove('faith family church, taylors, sc')
+	if 'faith family church, taylors' in tags:
+		tags.remove('faith family church, taylors')
+	if 'faith family church. taylors' in tags:
+		tags.remove('faith family church. taylors')
+	if 'brad losh' in tags:
+		tags.remove('brad losh')
+	if 'greenville' in tags:
+		tags.remove('greenville')
+	if 'hagin' in tags:
+		tags.remove('hagin')
+	if 'jennifer losh' in tags:
+		tags.remove('jennifer losh')
+	if 'pastor brad losh' in tags:
+		tags.remove('pastor brad losh')
+	if 'pastor frank jones' in tags:
+		tags.remove('pastor frank jones')
+	if 'pastor frank jone' in tags:
+		tags.remove('pastor frank jone')
+	if 'pastor jennifer losh' in tags:
+		tags.remove('pastor jennifer losh')
+	if 'pastor judi jones' in tags:
+		tags.remove('pastor judi jones')
+	if 'pastor roger brewer' in tags:
+		tags.remove('pastor roger brewer')
+	if 'rev billy barbee' in tags:
+		tags.remove('rev billy barbee')
+	if 'rev randall grier' in tags:
+		tags.remove('rev randall grier')
+	if 'rev randy grier' in tags:
+		tags.remove('rev randy grier')
+	if 'sc' in tags:
+		tags.remove('sc')
 
 	url = "https://archive.org/download/"+cid+"/"+cid+"_files.xml"
 	print url
@@ -94,21 +96,28 @@ for collection in json_object['response']['docs']:
 	except:
 		print "could not reach file - "+cid
 	
-	nmarkdown = ""
-	nmarkdown = "Title: "+ctitle+"\n"
-	nmarkdown += "Author: "+ccreator+"\n"
-	nmarkdown += "PostDate: "+cdate+"\n"
-	nmarkdown += "Date: "+cdate+"\n"
-	nmarkdown += "Category: Sermons"+"\n"
-	nmarkdown += "Slug: "+cdate.split('-')[0]+"/"+cdate.split('-')[1]+"/"+cid+"\n"
-	nmarkdown += "Icon: microphone\n"
-	nmarkdown += 'AudioLink: '+cid+'\n'
-	nmarkdown += 'Tags: '+', '.join(tags)+'\n'
-	nmarkdown += 'mp3: '+cid+'/'+mp3file+'\n'
-	nmarkdown += 'ogg: '+cid+'/'+oggfile+'\n'
+	nmarkdown = "---"+"\n"
+	nmarkdown += 'lunr: "true"\n'
+	nmarkdown += 'title: "'+ctitle+'"\n'
+	nmarkdown += 'author: "'+ccreator+'"\n'
+	pdate = cdate.split('-')
+	pdate = pdate[1]+'-'+pdate[2]+'-'+pdate[0]
+	nmarkdown += 'postDate: "'+pdate+'"\n'
+	nmarkdown += 'date: '+cdate+'\n'
+	nmarkdown += 'category: "sermons"'+'\n'
+	nmarkdown += 'slug: "'+cdate.split('-')[0]+"/"+cdate.split('-')[1]+"/"+cid+'"\n'
+	nmarkdown += 'icon: microphone\n'
+	nmarkdown += 'audioLink: "'+cid+'"\n'
+	nmarkdown += 'tags: ['+', '.join(tags)+']\n'
+	nmarkdown += 'mp3: "'+cid+'/'+mp3file+'"\n'
+	nmarkdown += 'ogg: "'+cid+'/'+oggfile+'"\n'
+	nmarkdown += 'linkurl: "'+url+'"\n'
+	nmarkdown += 'ipath: "https://archive.org/download/'+cid+'/'+mp3file+'"\n'
+	nmarkdown += 'layout: sermon.html'+'\n'
+	nmarkdown += "---"
 	print (nmarkdown)
 	try:
-		file= open('content/sermons/'+cid+'.md','a')
+		file= open('src/sermons/'+cid+'.md','a')
 		file.write(nmarkdown)
 		file.close()
 	
