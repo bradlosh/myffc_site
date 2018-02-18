@@ -139,7 +139,7 @@ metalsmith(__dirname)
   .use(minify())
   .use(feedjs({
     collection: 'sermons',
-    copyright: "2017 Faith Family Church, Taylors, SC",
+    copyright: "2018 Faith Family Church, Taylors, SC",
     language: "en-us",
     category: "Christianity",
     explicit: "no",
@@ -148,7 +148,7 @@ metalsmith(__dirname)
   }))
   .use(feedjs({
     collection: 'sermons',
-    copyright: "2017 Faith Family Church, Taylors, SC",
+    copyright: "2018 Faith Family Church, Taylors, SC",
     language: "en-us",
     category: "Christianity",
     explicit: "no",
