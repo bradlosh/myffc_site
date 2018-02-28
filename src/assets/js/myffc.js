@@ -40,3 +40,4 @@ function search(idx,searchterm) {
   var results = idx.search(searchterm);
   console.log(results);
 }
+

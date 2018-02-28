@@ -14,7 +14,7 @@
   <body class="avenir">
 
 <header class="ttu">
-  <div class="cover bg-left bg-center-l" style="background-image: url(/assets/images/Febbanner.jpg)">
+  <div class="cover bg-left bg-center-l" style="background-image: url(/assets/images/mountains.jpg)">
     <div class="bg-black-50 pb5 pb6-m pb7-l">
 
       <nav class="db dt-l w-100 mw8 center border-box pa3 ph5-l">
@@ -41,6 +41,8 @@
         <a class="f6 no-underline grow dib v-mid white ba br1 b--white ph3 pv2 mb3 hover-bg-green" href="/pages/im_new/">I'm New</a>
         <a class="f6 no-underline grow dib v-mid white ba br1 b--white ph3 pv2 mb3 hover-bg-green" href="/pages/calendar/">Calendar</a>
       </div>
+	  
+	  
     </div>
 
   </div> 
@@ -96,6 +98,20 @@
   </h2>
     <a class="f6 link dim br1 ph3 pv2 mt0 mb2 dib white bg-green ttu" href="/pages/im_new/" title="New Here?">I'm New</a>
 </div>
-
-
+<div class="tc pv3 ph3 bg-light-green">
+  <h1 class="f4 f3-m f2-l fw2 black-90 mv3 mt1 mb0">
+    Recent Sermons:
+  </h1>
+<div class="dt-ns dt--fixed-ns">
+{{#each collections.latestPosts}}
+  <a class="no-underline" href="/{{ path }}">
+  <div class="f6 no-underline grow dib v-mid black ba br1 b--black ph5 pv2 mb3 hover-bg-green">
+  <svg id="musicNote" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="currentcolor">
+  <path d="M0 24 A6 6 0 0 0 12 24 V8 H26 V18 A6 6 0 0 0 18 24 A6 6 0 0 0 30 24 V2 H8 V18 A6 6 0 0 0 0 24"></path>
+</svg>
+    <h3>{{ title }}</h3>
+  </div>
+  </a>
+{{/each}}
+</div></div>
 {{> footer }}

@@ -31,9 +31,15 @@ metalsmith(__dirname)
     }
   })
   .source('./src')
-  .destination('./public')
+  .destination('./myffc')
   .clean(true)
   .use(collections({
+	  latestPosts: {
+      pattern: 'sermons/**/*.md',
+      sortBy: 'date',
+      reverse: true,
+      limit: 3
+    },
       sermons: {
         pattern: 'sermons/**/*.md',
         sortBy: 'date',
