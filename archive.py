@@ -5,11 +5,14 @@ import requests
 import xml.etree.cElementTree as ET
 
 url = 'https://archive.org/advancedsearch.php?q=%27faith+family+church%27+%27taylors%2Csc%27&fl%5B%5D=avg_rating&fl%5B%5D=call_number&fl%5B%5D=collection&fl%5B%5D=contributor&fl%5B%5D=coverage&fl%5B%5D=creator&fl%5B%5D=date&fl%5B%5D=description&fl%5B%5D=downloads&fl%5B%5D=foldoutcount&fl%5B%5D=format&fl%5B%5D=headerImage&fl%5B%5D=identifier&fl%5B%5D=imagecount&fl%5B%5D=language&fl%5B%5D=licenseurl&fl%5B%5D=mediatype&fl%5B%5D=members&fl%5B%5D=month&fl%5B%5D=num_reviews&fl%5B%5D=oai_updatedate&fl%5B%5D=publicdate&fl%5B%5D=publisher&fl%5B%5D=reviewdate&fl%5B%5D=rights&fl%5B%5D=scanningcentre&fl%5B%5D=source&fl%5B%5D=subject&fl%5B%5D=title&fl%5B%5D=type&fl%5B%5D=volume&fl%5B%5D=week&fl%5B%5D=year&sort%5B%5D=date+desc&sort%5B%5D=&sort%5B%5D=&rows=500&page=1&output=json'
+ccolumns = '"lunr","title","author","postdate","date","category","slug","icon","audiolink","tags","mp3","ogg","linkurl","ipath","layout"\n'
+ccount = 0
 
 response = requests.get(url)
 json_object = response.json()
 	
 for collection in json_object['response']['docs']:
+	ccount+=1
 	print (collection['title']+' - '+collection['creator']+' - '+collection['identifier'])
 	ctitle = collection['title']
 	ccreator = collection['creator']
@@ -95,7 +98,7 @@ for collection in json_object['response']['docs']:
 				oggfile = filename
 	except:
 		print "could not reach file - "+cid
-	
+	columns = 'lunr,title,author,postdate,date,category,slug,icon,audiolink,tags,mp3,ogg,linkurl,ipath,layout"\n'
 	nmarkdown = "---"+"\n"
 	nmarkdown += 'lunr: "true"\n'
 	nmarkdown += 'title: "'+ctitle+'"\n'
@@ -105,6 +108,7 @@ for collection in json_object['response']['docs']:
 	nmarkdown += 'postDate: "'+pdate+'"\n'
 	nmarkdown += 'date: '+cdate+'\n'
 	nmarkdown += 'category: "sermons"'+'\n'
+	slug = cdate.split('-')[0]+"/"+cdate.split('-')[1]+"/"+cid
 	nmarkdown += 'slug: "'+cdate.split('-')[0]+"/"+cdate.split('-')[1]+"/"+cid+'"\n'
 	nmarkdown += 'icon: microphone\n'
 	nmarkdown += 'audioLink: "'+cid+'"\n'
@@ -115,15 +119,19 @@ for collection in json_object['response']['docs']:
 	nmarkdown += 'ipath: "https://archive.org/download/'+cid+'/'+mp3file+'"\n'
 	nmarkdown += 'layout: sermon.html'+'\n'
 	nmarkdown += "---"
-	print (nmarkdown)
-	try:
-		file= open('src/sermons/'+cid+'.md','a')
-		file.write(nmarkdown)
-		file.close()
+	cdata = '"true","'+ctitle+'","'+ccreator+'","'+pdate+'","'+cdate+'","sermons","'+slug+'","microphone",'+'"'+cid+'","'+'['+', '.join(tags)+']'+'","'+cid+'/'+mp3file+'","'+cid+'/'+oggfile+'","'+url+'","'+'https://archive.org/download/'+cid+'/'+mp3file+'","sermon.html"'
+	print (cdata)
+	ccolumns += cdata + '\n'
 	
-	except:
-		print('Something wrong')
-		sys.exit(0)
+	
+try:
+	file= open('test.csn','w')
+	file.write(ccolumns)
+	file.close()
+	
+except:
+	print('Something wrong')
+	sys.exit(0)
 
 #for avr in tree.findall("Collection"):
 #	for avi in avr.getiterator():
