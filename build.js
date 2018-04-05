@@ -15,6 +15,8 @@ var watch = require('metalsmith-watch');
 //var feedjs = require('metalsmith-feed');
 var feedjs = require('metalsmith-feed-js');
 var minify = require('metalsmith-html-minifier');
+var sitemap = require('metalsmith-mapsite');
+var robots = require('metalsmith-robots');
 //var lunr_ = require('lunr');
 //require('lunr-languages/lunr.stemmer.support')(lunr_);
 //require('lunr-languages/lunr.no')(lunr_);
@@ -197,6 +199,13 @@ metalsmith(__dirname)
               footer: 'partials/footer'
             }
         }))
+  .use(sitemap('https://www.myffc.org'))
+  .use(robots({
+	  useragent: "googlebot",
+	  allow: ["index.html"],
+	  disallow: ["404.html"],
+	  sitemap: "https://www.myffc.org/sitemap.xml"
+  }))
   .use(serve({
     host: '0.0.0.0',
     port: 8080,
