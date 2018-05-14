@@ -22,206 +22,233 @@ var robots = require('metalsmith-robots');
 //require('lunr-languages/lunr.no')(lunr_);
 
 metalsmith(__dirname)
-  .metadata({
-    site: {
-      name: 'Faith Family Church',
-      description: "FFC Wesbsite and Podcast, Taylors, SC, Jesus, Christianity, faith, Rhema",
-      url: 'https://myffc.org',
-//      author: 'info@myffc.org',
-      title: 'Faith Family Church',
-      subtitle: 'Faith Family Church, Taylors, SC'
-    }
-  })
-  .source('./src')
-  .destination('./myffc')
-  .clean(true)
-  .use(collections({
-	  latestPosts: {
-      pattern: 'sermons/**/*.md',
-      sortBy: 'date',
-      reverse: true,
-      limit: 3
-    },
-      sermons: {
-        pattern: 'sermons/**/*.md',
-        sortBy: 'date',
-        reverse: true
+    .metadata({
+        site: {
+            name: 'Faith Family Church',
+            description: "FFC Wesbsite and Podcast, Taylors, SC, Jesus, Christianity, faith, Rhema",
+            url: 'https://myffc.org',
+            //      author: 'info@myffc.org',
+            title: 'Faith Family Church',
+            subtitle: 'Faith Family Church, Taylors, SC'
+        }
+    })
+    .source('./src')
+    .destination('./myffc')
+    .clean(true)
+    .use(collections({
+        latestPosts: {
+            pattern: 'sermons/**/*.md',
+            sortBy: 'date',
+            reverse: true,
+            limit: 3
+        },
+        sermons: {
+            pattern: 'sermons/**/*.md',
+            sortBy: 'date',
+            reverse: true
         },
         lastArticles: {
-          sortBy: 'date',
-          limit: 10
+            sortBy: 'date',
+            limit: 10
         },
         metadata: {
-          layout:   'sermon.html'
+            layout: 'sermon.html'
         },
-      posts: {
-        pattern: 'posts/**/*.md',
+        posts: {
+            pattern: 'posts/**/*.md',
+            sortBy: 'date',
+            reverse: true
+        }
+    }))
+    .use(markdown({
+        gfm: true,
+        tables: true,
+        breaks: false,
+        pedantic: false,
+        sanitize: true,
+        smartLists: true,
+        smartypants: true
+    }))
+    .use(assets({
+        source: 'src/assets', // relative to the working directory
+        destination: './assets' // relative to the build directory
+    }))
+    .use(permalinks({
+        relative: false,
+        pattern: ':mainCollection/:title'
+    }))
+    .use(pagination({
+        "collections.sermons": {
+            "perPage": 10,
+            "layout": "sermons.html",
+            "first": "sermons/index.html",
+            "noPageOne": true,
+            "path": "sermons/:num/index.html"
+        }
+    }))
+    .use(tags({
+        // yaml key for tag list in you pages
+        handle: 'tags',
+        // path for result pages
+        path: "topics/:tag/index.html",
+        //pathPage: "topics/:tag/:num/index.html",
+        //perPage: 10,
+        // layout to use for tag listing
+        layout: 'tags.html',
+        // provide posts sorted by 'date' (optional)
         sortBy: 'date',
-        reverse: true
-        },
-        lastArticles: {
-          sortBy: 'date',
-          limit: 10
+        // sort direction (optional)
+        reverse: true,
+        // skip updating metalsmith's metadata object.
+        // useful for improving performance on large blogs
+        // (optional)
+        //skipMetadata: true,
+        // Any options you want to pass to the [slug](https://github.com/dodo/node-slug) package.
+        // Can also supply a custom slug function.
+        //slug: function(tag) { return tag.toLowerCase() }
+        slug: {
+            mode: 'rfc3986'
         }
-      }))
-  .use(markdown({
-    gfm: true,
-    tables: true,
-    breaks: false,
-    pedantic: false,
-    sanitize: true,
-    smartLists: true,
-    smartypants: true
-  }))
-  .use(assets({
-      source: 'src/assets', // relative to the working directory
-      destination: './assets' // relative to the build directory
-  }))
-  .use(permalinks({
-      relative: false,
-      pattern: ':mainCollection/:title',
-  }))
-  .use(pagination({
-    "collections.sermons": {
-    	"perPage": 10,
-      "layout": "sermons.html",
-      "first": "sermons/index.html",
-      "noPageOne": true,
-      "path": "sermons/:num/index.html"
-    }
-  }))
-  .use(tags({
-    // yaml key for tag list in you pages
-    handle: 'tags',
-    // path for result pages
-    path: "topics/:tag/index.html",
-    //pathPage: "topics/:tag/:num/index.html",
-    //perPage: 10,
-    // layout to use for tag listing
-    layout:'tags.html',
-    // provide posts sorted by 'date' (optional)
-    sortBy: 'date',
-    // sort direction (optional)
-    reverse: true,
-    // skip updating metalsmith's metadata object.
-    // useful for improving performance on large blogs
-    // (optional)
-    //skipMetadata: true,
-    // Any options you want to pass to the [slug](https://github.com/dodo/node-slug) package.
-    // Can also supply a custom slug function.
-    //slug: function(tag) { return tag.toLowerCase() }
-    slug: {mode: 'rfc3986'}
-  }))
-  .use(author({ // make sure it comes after collections
-    collection: 'sermons',
-    authors: {
-      'Pastor Frank Jones': {
-        name: 'Pastor Frank',
-    //    url: 'http://somesite.com',
-    //    twitter: '@johnlennon'
-      },
-      'Pastor Judi Jones': {
-        name: 'Pastor Judi',
-    //    url: 'http://somesite.com',
-    //    twitter: '@paulmccartney'
-      }
-    }
-  }))
-.use(lunr({
-  ref: 'title',
-  indexPath: 'searchIndex.json',
-  fields: {
-      contents: 1,
-      author: 10
-  },
-//  pipelineFunctions: [
-//    lunr_.trimmer,
-//    lunr_.no.stopWordFilter,
-//    lunr_.no.stemmer
-//	  ],
-  preprocess: function(content) {
-    // Replace all occurrences of __title__ with the current file's title metadata.
-    return content.replace(/__title__/g, this.title);
-  }
-}))
-  .use(minify())
-  .use(feedjs({
-    collection: 'sermons',
-    copyright: "2018 Faith Family Church, Taylors, SC",
-    language: "en-us",
-    category: "Christianity",
-    explicit: "no",
-    limit: false,
-    destination: "rss.xml"
-  }))
-  .use(feedjs({
-    collection: 'sermons',
-    copyright: "2018 Faith Family Church, Taylors, SC",
-    language: "en-us",
-    category: "Christianity",
-    explicit: "no",
-    destination: "itunes.xml",
-    subtitle: "Faith Family Church, Taylors, SC",
-    limit: 50,
-    image_url: "https://myffc.org/assets/images/logo_current.jpg",
-    custom_namespaces: {
-      'itunes': 'http://www.itunes.com/dtds/podcast-1.0.dtd',
-    },
-    custom_elements: [
-      {'itunes:subtitle': 'to know Jesus to make Jesus known'},
-      {'itunes:author': 'Faith Family Church'},
-      {'itunes:summary': 'Follow us every Sunday as we discover the truths from the Word of God. Look for our podcast in the Podcasts app or in the iTunes Store'},
-      {'itunes:owner': [
-        {'itunes:name': 'FFC'},
-        {'itunes:email': 'info@myffc.org'}
-      ]},
-      {'itunes:image': {
-        _attr: {
-          href: 'https://myffc.org/assets/images/logo_current.jpg'
-        }
-      }},
-      {'itunes:category': [
-        {_attr: {
-          text: 'Religion & Spirituality'
-        }}
-      ]},
-      {'itunes:explicit': 'no'}
-    ]
-
-  }))
-  .use(layouts({
-            engine: 'handlebars',
-            directory: './layouts',
-            default: 'article.html',
-            pattern: ["*/*/*html","*/*html","*html"],
-            partials: {
-              header: 'partials/header',
-              footer: 'partials/footer'
+    }))
+    .use(author({ // make sure it comes after collections
+        collection: 'sermons',
+        authors: {
+            'Pastor Frank Jones': {
+                name: 'Pastor Frank'
+                //    url: 'http://somesite.com',
+                //    twitter: '@johnlennon'
+            },
+            'Pastor Judi Jones': {
+                name: 'Pastor Judi'
+                //    url: 'http://somesite.com',
+                //    twitter: '@paulmccartney'
+            },
+            'Pastor Brad Losh': {
+                name: 'Pastor Brad'
+                //    url: 'http://somesite.com',
+                //    twitter: '@paulmccartney'
+            },
+            'Pastor Jennifer Losh': {
+                name: 'Pastor Jennifer'
+                //    url: 'http://somesite.com',
+                //    twitter: '@paulmccartney'
             }
-        }))
-  .use(sitemap('https://www.myffc.org'))
-  .use(robots({
-	  useragent: "googlebot",
-	  allow: ["index.html"],
-	  disallow: ["404.html"],
-	  sitemap: "https://www.myffc.org/sitemap.xml"
-  }))
-  .use(serve({
-    host: '0.0.0.0',
-    port: 8080,
-    verbose: true
-  }))
-  .use(watch({
-    paths: {
-      "${source}/**/*": true,
-      "layout/**/*": "**/*",
-    }
-  }))
-  .build(function (err) {
-    if (err) {
-      console.log(err);
-    }
-    else {
-      console.log('myffc built!');
-    }
-  });
+        }
+    }))
+    .use(lunr({
+        ref: 'title',
+        indexPath: 'searchIndex.json',
+        fields: {
+            contents: 1,
+            author: 10
+        },
+        //  pipelineFunctions: [
+        //    lunr_.trimmer,
+        //    lunr_.no.stopWordFilter,
+        //    lunr_.no.stemmer
+        //	  ],
+        preprocess: function (content) {
+            // Replace all occurrences of __title__ with the current file's title metadata.
+            return content.replace(/__title__/g, this.title);
+        }
+    }))
+    .use(minify())
+    .use(feedjs({
+        collection: 'sermons',
+        copyright: "2018 Faith Family Church, Taylors, SC",
+        language: "en-us",
+        category: "Christianity",
+        explicit: "no",
+        limit: false,
+        destination: "rss.xml"
+    }))
+    .use(feedjs({
+        collection: 'sermons',
+        copyright: "2018 Faith Family Church, Taylors, SC",
+        language: "en-us",
+        category: "Christianity",
+        explicit: "no",
+        destination: "itunes.xml",
+        subtitle: "Faith Family Church, Taylors, SC",
+        limit: 50,
+        image_url: "https://myffc.org/assets/images/logo_current.jpg",
+        custom_namespaces: {
+            'itunes': 'http://www.itunes.com/dtds/podcast-1.0.dtd'
+        },
+        custom_elements: [
+            {
+                'itunes:subtitle': 'to know Jesus to make Jesus known'
+            },
+            {
+                'itunes:author': 'Faith Family Church'
+            },
+            {
+                'itunes:summary': 'Follow us every Sunday as we discover the truths from the Word of God. Look for our podcast in the Podcasts app or in the iTunes Store'
+            },
+            {
+                'itunes:owner': [
+                    {
+                        'itunes:name': 'FFC'
+                    },
+                    {
+                        'itunes:email': 'info@myffc.org'
+                    }
+                ]
+            },
+            {
+                'itunes:image': {
+                    _attr: {
+                        href: 'https://myffc.org/assets/images/logo_current.jpg'
+                    }
+                }
+            },
+            {
+                'itunes:category': [
+                    {
+                        _attr: {
+                            text: 'Religion & Spirituality'
+                        }
+                    }
+                ]
+            },
+            {
+                'itunes:explicit': 'no'
+            }
+        ]
+
+    }))
+    .use(layouts({
+        engine: 'handlebars',
+        directory: './layouts',
+        default: 'article.html',
+        pattern: ["*/*/*html", "*/*html", "*html"],
+        partials: {
+            header: 'partials/header',
+            footer: 'partials/footer'
+        }
+    }))
+    .use(sitemap('https://www.myffc.org'))
+    .use(robots({
+        useragent: "googlebot",
+        allow: ["index.html"],
+        disallow: ["404.html"],
+        sitemap: "https://www.myffc.org/sitemap.xml"
+    }))
+    .use(serve({
+        host: '0.0.0.0',
+        port: 8080,
+        verbose: true
+    }))
+    .use(watch({
+        paths: {
+            "${source}/**/*": true,
+            "layout/**/*": "**/*"
+        }
+    }))
+    .build(function (err) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('myffc built!');
+        }
+    });
