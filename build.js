@@ -110,31 +110,31 @@ metalsmith(__dirname)
             mode: 'rfc3986'
         }
     }))
-    .use(author({ // make sure it comes after collections
-        collection: 'sermons',
-        authors: {
-            'Pastor Frank Jones': {
-                name: 'Pastor Frank'
-                //    url: 'http://somesite.com',
-                //    twitter: '@johnlennon'
-            },
-            'Pastor Judi Jones': {
-                name: 'Pastor Judi'
-                //    url: 'http://somesite.com',
-                //    twitter: '@paulmccartney'
-            },
-            'Pastor Brad Losh': {
-                name: 'Pastor Brad'
-                //    url: 'http://somesite.com',
-                //    twitter: '@paulmccartney'
-            },
-            'Pastor Jennifer Losh': {
-                name: 'Pastor Jennifer'
-                //    url: 'http://somesite.com',
-                //    twitter: '@paulmccartney'
-            }
-        }
-    }))
+//    .use(author({ // make sure it comes after collections
+//        collection: 'sermons',
+//        authors: {
+//            'Pastor Frank Jones': {
+//                name: 'Pastor Frank'
+//                //    url: 'http://somesite.com',
+//                //    twitter: '@johnlennon'
+//            },
+//            'Pastor Judi Jones': {
+//                name: 'Pastor Judi'
+//                //    url: 'http://somesite.com',
+//                //    twitter: '@paulmccartney'
+//            },
+//            'Pastor Brad Losh': {
+//                name: 'Pastor Brad'
+//                //    url: 'http://somesite.com',
+//                //    twitter: '@paulmccartney'
+//            },
+//            'Pastor Jennifer Losh': {
+//                name: 'Pastor Jennifer'
+//                //    url: 'http://somesite.com',
+//                //    twitter: '@paulmccartney'
+//            }
+//        }
+//s    }))
     .use(lunr({
         ref: 'title',
         indexPath: 'searchIndex.json',
