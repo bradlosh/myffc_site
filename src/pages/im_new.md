@@ -9,12 +9,13 @@ layout: page.html
 
 ## Welcome Home! ##
 
-Welcome to Faith Family Church.  We hope when you walk through the doors
+![pfj](../../assets/images/pfj.jpg "Pastor Frank & Judi Jones")
+Welcome to Faith Family Church!  We hope when you walk through the doors
 you will immediately recognize that you are among friends--a diverse,
 wonderful group of people who love Jesus and who are committed to
 helping you discover yourself in the light of the Word of God.  We have
 been praying for you, and no matter your background or life experience,
-you'll find a place where you're warmly welcomed and feel right at home!
+you'll find a place where you're warmly welcomed and feel right at home! - *Pastor Frank & Judi Jones*
 
 
 ## Our Mission ##
