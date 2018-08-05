@@ -20,7 +20,7 @@ you'll find a place where you're warmly welcomed and feel right at home! - *Past
 
 ## Our Mission ##
 
-...is to carry on the work of Jesus...
+...is to equip and strengthen the Body of Christ to carry on the work of Jesus...
 
 **The Spirit of the Lord is upon me, because He hath anointed me to
 preach the gospel to the poor;  He hath sent to heal the brokenhearted,

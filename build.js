@@ -17,6 +17,7 @@ var feedjs = require('metalsmith-feed-js');
 var minify = require('metalsmith-html-minifier');
 var sitemap = require('metalsmith-mapsite');
 var robots = require('metalsmith-robots');
+var tojson = require('metalsmith-to-json');
 //var lunr_ = require('lunr');
 //require('lunr-languages/lunr.stemmer.support')(lunr_);
 //require('lunr-languages/lunr.no')(lunr_);
@@ -69,6 +70,12 @@ metalsmith(__dirname)
         smartLists: true,
         smartypants: true
     }))
+//    .use(tojson({
+//        outputPath : '',
+//        createIndexes : true,
+//        indexPaths : 'src/sermons',
+//        onlyOutputIndex : true
+//    }))
     .use(assets({
         source: 'src/assets', // relative to the working directory
         destination: './assets' // relative to the build directory
